@@ -1,6 +1,7 @@
 var net = require('net');
 
 var server = '167.114.164.227' 
+server = 'localhost' 
 
 var client = new net.Socket();
 client.connect(8000, server, function() {
