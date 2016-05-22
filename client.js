@@ -15,7 +15,10 @@ client.connect(8000, server, function() {
 client.on('data', function(d) {
 	console.log('Received: ');
 	console.log(d)
-	client.destroy(); // kill client after server's response
+	//client.destroy(); // kill client after server's response
+	var msg = [120,120,31,18,16,5,22,1,49,29,203,0,95,7,108,8,53,151,81,0,60,157,2,220,123,16,65,0,159,170,0,23,146,84,13,10]
+	var buf = new Buffer(msg)
+	client.write(buf);
 });
 
 client.on('close', function() {
