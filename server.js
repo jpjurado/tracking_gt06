@@ -4,7 +4,7 @@ var crc16 = require('crc-itu').crc16;
 var server = net.createServer();  
 server.on('connection', handleConnection);
 
-server.listen(9000, function() {  
+server.listen(8000, function() {  
   console.log('server listening to %j', server.address());
 });
 
