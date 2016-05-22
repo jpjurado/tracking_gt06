@@ -23,7 +23,9 @@ function handleConnection(conn) {
     //conn.write(d);
     console.log(d)
     var msj = handleMessage(conn,d.toJSON().data)
-    conn.write(new Buffer(msj))
+
+    if(!msj)
+      conn.write(new Buffer(msj))
   }
 
   function onConnClose() {
@@ -113,6 +115,7 @@ function handleMessage(conn,msg){
       
     break
     case 0x12:
+      console.log('Dataaaaa')
       var date_time = command.slice(1,7) //Date time
       var qgn = command[7] //Quantyty of GPS satellites
       var lat = command.slice(8,12)
@@ -127,6 +130,8 @@ function handleMessage(conn,msg){
       var checksum = command.slice(29,31) //Checksum
 
       console.log(sn,checksum)
+
+      return undefined
     break
     case 0x80:
 
