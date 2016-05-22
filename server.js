@@ -24,7 +24,7 @@ function handleConnection(conn) {
     console.log(d)
     var msj = handleMessage(conn,d.toJSON().data)
     console.log('Response msg:',msj)
-    if(!msj)
+    if(msj)
       conn.write(new Buffer(msj))
   }
 
