@@ -1,6 +1,21 @@
 var net = require('net');
 var crc16 = require('crc-itu').crc16;
 
+var fs = require('fs');
+var moment = require('moment');
+
+function writeFile(content){
+  fs.writeFile("./log/"+moment().format('YYYY-MM-DD-HH-mm-ss-SSS')+'.txt', JSON.stringify(content), function(err) {
+      if(err) {
+          return console.log(err);
+      }
+
+      console.log("The file was saved!");
+  }); 
+}
+
+console.log(writeFile([10,12,15]))
+
 var server = net.createServer();  
 server.on('connection', handleConnection);
 
@@ -22,6 +37,7 @@ function handleConnection(conn) {
 
     //conn.write(d);
     console.log(d)
+    writeFile(d.toJSON().data)
     var msj = handleMessage(conn,d.toJSON().data)
     console.log('Response msg:',msj)
     if(msj)

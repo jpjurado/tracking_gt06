@@ -11,6 +11,7 @@
   "dependencies": {
     "checksum": "^0.1.1",
     "crc": "^3.4.0",
-    "crc-itu": "^0.1.0"
+    "crc-itu": "^0.1.0",
+    "moment": "^2.13.0"
   }
 }
