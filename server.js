@@ -41,7 +41,7 @@ function handleConnection(conn) {
     var msj = handleMessage(conn,d.toJSON().data)
     console.log('Response msg:',msj)
     if(msj)
-      setTimeout(function(){ conn.write(new Buffer(msj)) }, 500);
+      setTimeout(function(){ conn.write(new Buffer(msj),'hex') }, 800);
       //)
   }
 
