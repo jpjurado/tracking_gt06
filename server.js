@@ -19,7 +19,7 @@ console.log(writeFile([10,12,15]))
 var server = net.createServer();  
 server.on('connection', handleConnection);
 
-server.listen(8000, function() {  
+server.listen(5080, function() {  
   console.log('server listening to %j', server.address());
 });
 
@@ -36,9 +36,13 @@ function handleConnection(conn) {
     
 
     //conn.write(d);
-    console.log(d)
+    console.log('d:',d.toString('utf8'))
     writeFile(d.toJSON().data)
+    if(d.toJSON().data){
+      console.log('Data: ',d.toJSON().data.toString('utf8'))
+    }
     var msj = handleMessage(conn,d.toJSON().data)
+    msj = ''
     console.log('Response msg:',msj)
     if(msj)
       setTimeout(function(){ conn.write(new Buffer(msj),'hex') }, 800);
@@ -85,7 +89,7 @@ function arrayToHex(cmd){
 }
 
 function handleMessage(conn,msg){
-  console.log(msg.length)
+  console.log('Message length: ',msg.length)
   var headers = msg.slice(0,2)
   var length = msg[2]
   var command = msg.slice(3,3+length)
