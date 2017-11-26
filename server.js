@@ -14,6 +14,16 @@ function writeFile(content){
   }); 
 }
 
+function writeLog(data){
+  fs.appendFile("./log/log-"+moment().format('YYYY-MM-DD')+'.txt', moment().toISOString()+' - '+data+'\n', function(err) {
+      if(err) {
+          return console.log(err);
+      }
+
+      console.log("The file was saved!");
+  }); 
+}
+
 console.log(writeFile([10,12,15]))
 
 var server = net.createServer();  
@@ -37,7 +47,8 @@ function handleConnection(conn) {
 
     //conn.write(d);
     console.log('d:',d.toString('utf8'))
-    writeFile(d.toJSON().data)
+    writeLog(d.toString('utf8'))
+    //writeFile(d.toJSON().data)
     if(d.toJSON().data){
       console.log('Data: ',d.toJSON().data.toString('utf8'))
     }

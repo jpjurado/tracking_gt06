@@ -1,6 +1,6 @@
 var net = require('net');
 
-var server = '167.114.164.227' 
+var server = '52.170.213.245' 
 server = 'localhost' 
 
 var client = new net.Socket();
